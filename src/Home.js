@@ -1,5 +1,5 @@
 import React from "react";
-import "./Home.css";
+import "./home.css";
 import Row from "./Row";
 import requests from "./requests";
 import Banner from "./Banner";
@@ -7,12 +7,10 @@ import Nav from "./Nav";
 
 function Home() {
   return (
-    <div className="Home_app">
+    <div className="home">
       <Nav />
 
-      {/* <h1>
-        Hey Welcome to Movie Club!!
-      </h1> */}
+      {/* <h1>Hey Welcome to Movie Club!!</h1> */}
       <Banner />
       <Row
         title="Most Liked Movies"

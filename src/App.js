@@ -1,65 +1,35 @@
+import React from "react";
 import "./App.css";
-import GoogleLogin from "react-google-login";
-import { useState } from "react";
+import Home from "./Home";
+import Login from "./components/Login";
+import Event from "./Event";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-function App() {
-  const [loginData, setLoginData] = useState(
-    localStorage.getItem("loginData")
-      ? JSON.parse(localStorage.getItem("loginData"))
-      : null
-  );
+// function App() {
+//   return (
+//     <Router>
+//       <Switch>
+//         <div className="app">
+//           <Route exact path="/" component={Home} />
+//           <Route exact path="/event/:id" component={Event} />
+//         </div>
+//       </Switch>
+//     </Router>
+//   );
+// }
 
-  const handleFailure = (result) => {
-    console.log(result);
-
-    alert(result);
-  };
-
-  const handleLogin = async (googleData) => {
-    console.log(googleData);
-    const res = await fetch("/api/google-login", {
-      method: "POST",
-      body: JSON.stringify({
-        token: googleData.tokenId,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    const data = await res.json();
-    setLoginData(data);
-    localStorage.setItem("loginData", JSON.stringify(data));
-  };
-  const handleLogout = () => {
-    localStorage.removeItem("loginData");
-    setLoginData(null);
-  };
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>React Google Login App</h1>
-        <div>
-          {loginData ? (
-            <div>
-              <h3>You logged in as {loginData.email}</h3>
-              <button onClick={handleLogout}>Logout</button>
-            </div>
-          ) : (
-            <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              buttonText="Log in with Google"
-              onSuccess={handleLogin}
-              onFailure={handleFailure}
-              cookiePolicy={"single_host_origin"}
-              ux_mode={"popup"}
-            ></GoogleLogin>
-          )}
+class App extends React.Component {
+  render() {
+    return (
+      <Router>
+        <div className="app">
+          <Route exact path="/" component={Login} />
+          <Route exact path="/home" component={Home} />
+          <Route exact path="/event/:id" component={Event} />
         </div>
-      </header>
-    </div>
-  );
+      </Router>
+    );
+  }
 }
 
 export default App;
