@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import "./Ratepopup.css";
 import { FaStar } from "react-icons/fa";
+import axios from "axios";
 
 const colors = {
   orange: "#FFBA5A",
@@ -11,9 +13,27 @@ function Ratepopup(props) {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const stars = Array(5).fill(0);
-
-  const handleClick = (value) => {
+  const { id } = useParams();
+  const handleClick = async (value) => {
     setCurrentValue(value);
+
+    const headers = {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + localStorage.getItem("accessToken"),
+    };
+    const data = { movieId: id, rating: currentValue };
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/rateMovie",
+        data,
+        {
+          headers: headers,
+        }
+      );
+    } catch (e) {
+      console.log(e);
+      alert("Internal error");
+    }
   };
 
   const handleMouseOver = (newHoverValue) => {
