@@ -1,7 +1,8 @@
 .banner{
     color: white;
     object-fit: contain;
-    height: 719px;
+    height: 100%;
+    width: 100vw;
 }
 
 .banner__contents{

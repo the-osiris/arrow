@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "./axios";
-import { Link } from "react-router-dom";
-// import Banner from "./Banner";
 
 import "./Row.css";
 
@@ -20,7 +18,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
     fetchData();
   }, [fetchUrl]);
 
-  console.table(movies);
+  // console.table(movies);
 
   function func(x) {
     console.log(x);
@@ -28,7 +26,7 @@ function Row({ title, fetchUrl, isLargeRow }) {
 
   return (
     <div className="row">
-      <h2>{title}</h2>
+      <h3>{title}</h3>
       <div className="row_posters">
         {movies.map((movie) => (
           <div>

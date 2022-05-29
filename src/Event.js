@@ -80,8 +80,8 @@ function Event() {
             </button>
           </main>
           <Ratepopup trigger={buttonPopup} setTrigger={setButtonPopup}>
-            <h1>My popup</h1>
-            <p>This is my rate</p>
+            {/* <h1>My popup</h1> */}
+            {/* <p>Rate Now....</p> */}
           </Ratepopup>
         </div>
 

@@ -21,7 +21,7 @@ function Ratepopup(props) {
       "Content-Type": "application/json",
       Authorization: "Bearer " + localStorage.getItem("accessToken"),
     };
-    const data = { movieId: id, rating: currentValue };
+    const data = { movieId: id, rating: value };
     try {
       const response = await axios.post(
         "http://localhost:8080/rateMovie",
@@ -34,6 +34,7 @@ function Ratepopup(props) {
       console.log(e);
       alert("Internal error");
     }
+    props.setTrigger(false);
   };
 
   const handleMouseOver = (newHoverValue) => {
@@ -69,10 +70,10 @@ function Ratepopup(props) {
             );
           })}
         </div>
-        <button className="close_btn" onClick={() => props.setTrigger(false)}>
-          close
-        </button>
         {props.children}
+        <button className="close_btn" onClick={() => props.setTrigger(false)}>
+          x
+        </button>
       </div>
     </div>
   ) : (

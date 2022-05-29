@@ -38,8 +38,11 @@ app.use(updateProfilePic);
 app.use(rateMovie);
 app.use(getUser);
 
+const clearRating = require("./src/controllers/clearRating");
+app.use(clearRating);
+
 app.listen(process.env.PORT || 8080, async () => {
-    console.log(
-        "Server running at http://localhost:" + (process.env.PORT || 8080)
-    );
+  console.log(
+    "Server running at http://localhost:" + (process.env.PORT || 8080)
+  );
 });
